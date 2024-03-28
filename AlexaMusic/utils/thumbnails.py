@@ -70,6 +70,7 @@ async def gen_thumb(videoid, user_id, theme):
             except:
                 pass
 
+        
         async with aiohttp.ClientSession() as session:
             async with session.get(thumbnail) as resp:
                 if resp.status == 200:
@@ -77,38 +78,21 @@ async def gen_thumb(videoid, user_id, theme):
                     await f.write(await resp.read())
                     await f.close()
 
-        try:
-            wxy = await app.download_media(
-                (await app.get_users(user_id)).photo.big_file_id,
-                file_name=f"{user_id}.jpg",
-            )
-        except:
-            wxy = await app.download_media(
-                (await app.get_users(app.id)).photo.big_file_id,
-                file_name=f"{app.id}.jpg",
-            )
-        xy = Image.open(wxy)
-        a = Image.new("L", [640, 640], 0)
-        b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640, 640)], 0, 360, fill=255, outline="white")
-        c = np.array(xy)
-        d = np.array(a)
-        e = np.dstack((c, d))
-        f = Image.fromarray(e)
-        x = f.resize((107, 107))
-
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        bg = Image.open(f"Backgrounds/{theme}.PNG")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
-        enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.6)
-
-        image3 = changeImageSize(1280, 720, bg)
-        image5 = image3.convert("RGBA")
-        Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
-
+        
+        # Check if the 'filter' attribute is available in the Image module
+        if hasattr(Image, 'filter'):
+            background = image2.filter(filter=ImageFilter.BoxBlur(50))
+            enhancer = ImageEnhance.Brightness(background)
+            background = enhancer.enhance(0.9)
+        else:
+            # If 'filter' attribute is not available, use a different approach for blurring
+            background = image2.filter(ImageFilter.BoxBlur(50))
+            enhancer = ImageEnhance.Brightness(background)
+            background = enhancer.enhance(0.9)
+        
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
         x1 = Xcenter - 250
@@ -116,80 +100,77 @@ async def gen_thumb(videoid, user_id, theme):
         x2 = Xcenter + 250
         y2 = Ycenter + 250
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.LANCZOS)
-        logo.save(f"cache/chop{videoid}.png")
-        if not os.path.isfile(f"cache/cropped{videoid}.png"):
-            im = Image.open(f"cache/chop{videoid}.png").convert("RGBA")
-            add_corners(im)
-            im.save(f"cache/cropped{videoid}.png")
-
-        crop_img = Image.open(f"cache/cropped{videoid}.png")
-        logo = crop_img.convert("RGBA")
-        logo.thumbnail((365, 365), Image.LANCZOS)
-        width = int((1280 - 365) / 2)
-        background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 7, 150), mask=logo)
-        background.paste(x, (900, 600), mask=x)
-        background.paste(image3, (0, 0), mask=image3)
-
+        logo.thumbnail((520, 520), Image.ANTIALIAS)
+        logo = ImageOps.expand(logo, border=17, fill="pink")
+        background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("assets/font2.ttf", 40)
-        ImageFont.truetype("assets/font2.ttf", 60)
-        arial = ImageFont.truetype("assets/font2.ttf", 25)
-        ImageFont.truetype("assets/font.ttf", 25)
-        para = textwrap.wrap(title, width=32)
-        try:
-            text_w, text_h = draw.textsize(f"BWF MUSIC PLAYING", font=font)
-            draw.text(
-                ((1280 - text_w) / 2, 30),
-                f"BWF MUSIC PLAYING",
-                fill="red",
-                font=font,
-            )
-            text_w, text_h = draw.textsize(
-                f"", font=arial
-            )
-            draw.text(
-                ((1280 - text_w) / 2, 80),
-                f"",
-                fill="green",
-                font=arial,
-            )
-            if para[0]:
-                text_w, text_h = draw.textsize(f"{para[0]}", font=font)
+        
+        # Adjust the font size here
+        font_size = 40
+        font = ImageFont.truetype("assets/font2.ttf", font_size)
+        font2_size = 70
+        font2 = ImageFont.truetype("assets/font2.ttf", font2_size)
+        arial = ImageFont.truetype("assets/font2.ttf", 30)
+        name_font = ImageFont.truetype("assets/font.ttf", 40)
+        
+        para = textwrap.wrap(clear(title), width=32) 
+        j = 0
+        draw.text(
+            (6, 6), f"ahmed", fill="Yellow", font=name_font
+        )
+        draw.text(
+            (600, 200),
+            f"NOW PLAYING",
+            fill="white",
+            stroke_width=2,
+            stroke_fill="yellow",
+            font=font2,
+        )
+        for line in para:
+            if j == 1:
+                j += 1
                 draw.text(
-                    ((1280 - text_w) / 2, 550),
-                    f"{para[0]}",
-                    fill="yellow",
-                    stroke_width=1,
-                    stroke_fill="black",
-                    font=font,
-                )
-            if para[1]:
-                text_w, text_h = draw.textsize(f"{para[1]}", font=font)
-                draw.text(
-                    ((1280 - text_w) / 2, 600),
-                    f"{para[1]}",
+                    (600, 390),
+                    f"Tɪᴛʟᴇ : {line}",
                     fill="white",
                     stroke_width=1,
-                    stroke_fill="black",
+                    stroke_fill="white",
                     font=font,
                 )
-        except:
-            pass
-        text_w, text_h = draw.textsize(f"", font=arial)
+            if j == 0:
+                j += 1
+                draw.text(
+                    (600, 330),
+                    f"{line}",
+                    fill="white",
+                    stroke_width=1,
+                    stroke_fill="white",
+                    font=font,
+                )
+
         draw.text(
-            ((1280 - text_w) / 2, 620),
-            f"",
+            (600, 450),
+            f"Views : {views[:23]}",
             fill="white",
-            font=arial,
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
         )
-        text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - text_w) / 2, 660),
-            f"Duration: {duration} Mins",
-            fill="black",
-            font=arial,
+            (600, 500),
+            f"Duration : {duration[:23]} Mins",
+            fill="white",
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
+        )
+        draw.text(
+            (600, 550),
+            f"Channel : {channel}",
+            fill="white",
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
         )
         try:
             os.remove(f"cache/thumb{videoid}.png")
@@ -229,6 +210,7 @@ async def gen_qthumb(videoid, user_id, theme):
             except:
                 pass
 
+
         async with aiohttp.ClientSession() as session:
             async with session.get(thumbnail) as resp:
                 if resp.status == 200:
@@ -236,38 +218,21 @@ async def gen_qthumb(videoid, user_id, theme):
                     await f.write(await resp.read())
                     await f.close()
 
-        try:
-            wxy = await app.download_media(
-                (await app.get_users(user_id)).photo.big_file_id,
-                file_name=f"{user_id}.jpg",
-            )
-        except:
-            wxy = await app.download_media(
-                (await app.get_users(app.id)).photo.big_file_id,
-                file_name=f"{app.id}.jpg",
-            )
-        xy = Image.open(wxy)
-        a = Image.new("L", [640, 640], 0)
-        b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640, 640)], 0, 360, fill=255, outline="white")
-        c = np.array(xy)
-        d = np.array(a)
-        e = np.dstack((c, d))
-        f = Image.fromarray(e)
-        x = f.resize((107, 107))
-
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        bg = Image.open(f"Backgrounds/{theme}.PNG")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
-        enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.6)
-
-        image3 = changeImageSize(1280, 720, bg)
-        image5 = image3.convert("RGBA")
-        Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
-
+        
+        # Check if the 'filter' attribute is available in the Image module
+        if hasattr(Image, 'filter'):
+            background = image2.filter(filter=ImageFilter.BoxBlur(50))
+            enhancer = ImageEnhance.Brightness(background)
+            background = enhancer.enhance(0.9)
+        else:
+            # If 'filter' attribute is not available, use a different approach for blurring
+            background = image2.filter(ImageFilter.BoxBlur(50))
+            enhancer = ImageEnhance.Brightness(background)
+            background = enhancer.enhance(0.9)
+        
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
         x1 = Xcenter - 250
@@ -275,82 +240,78 @@ async def gen_qthumb(videoid, user_id, theme):
         x2 = Xcenter + 250
         y2 = Ycenter + 250
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.LANCZOS)
-        logo.save(f"cache/chop{videoid}.png")
-        if not os.path.isfile(f"cache/cropped{videoid}.png"):
-            im = Image.open(f"cache/chop{videoid}.png").convert("RGBA")
-            add_corners(im)
-            im.save(f"cache/cropped{videoid}.png")
-
-        crop_img = Image.open(f"cache/cropped{videoid}.png")
-        logo = crop_img.convert("RGBA")
-        logo.thumbnail((365, 365), Image.LANCZOS)
-        width = int((1280 - 365) / 2)
-        background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 7, 150), mask=logo)
-        background.paste(x, (900, 600), mask=x)
-        background.paste(image3, (0, 0), mask=image3)
-
+        logo.thumbnail((520, 520), Image.ANTIALIAS)
+        logo = ImageOps.expand(logo, border=17, fill="pink")
+        background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("assets/font2.ttf", 40)
-        ImageFont.truetype("assets/font2.ttf", 60)
-        arial = ImageFont.truetype("assets/font2.ttf", 25)
-        ImageFont.truetype("assets/font.ttf", 25)
-        para = textwrap.wrap(title, width=32)
-        try:
-            text_w, text_h = draw.textsize(f"BWF MUSIC PLAYING", font=font)
-            draw.text(
-                ((1280 - text_w) / 2, 30),
-                f"BWF MUSIC PLAYING",
-                fill="red",
-                font=font,
-            )
-            text_w, text_h = draw.textsize(
-                f"BWF MUSIC BOT", font=arial
-            )
-            draw.text(
-                ((1280 - text_w) / 2, 80),
-                f"BWF MUSIC BOT",
-                fill="green",
-                font=arial,
-            )
-            if para[0]:
-                text_w, text_h = draw.textsize(f"{para[0]}", font=font)
+        
+        # Adjust the font size here
+        font_size = 40
+        font = ImageFont.truetype("assets/font2.ttf", font_size)
+        font2_size = 70
+        font2 = ImageFont.truetype("assets/font2.ttf", font2_size)
+        arial = ImageFont.truetype("assets/font2.ttf", 30)
+        name_font = ImageFont.truetype("assets/font.ttf", 40)
+        
+        para = textwrap.wrap(clear(title), width=32) 
+        j = 0
+        draw.text(
+            (6, 6), f"ahmed", fill="Yellow", font=name_font
+        )
+        draw.text(
+            (600, 200),
+            f"NOW PLAYING",
+            fill="white",
+            stroke_width=2,
+            stroke_fill="yellow",
+            font=font2,
+        )
+        for line in para:
+            if j == 1:
+                j += 1
                 draw.text(
-                    ((1280 - text_w) / 2, 550),
-                    f"{para[0]}",
-                    fill="yellow",
-                    stroke_width=1,
-                    stroke_fill="black",
-                    font=font,
-                )
-            if para[1]:
-                text_w, text_h = draw.textsize(f"{para[1]}", font=font)
-                draw.text(
-                    ((1280 - text_w) / 2, 600),
-                    f"{para[1]}",
+                    (600, 390),
+                    f"Tɪᴛʟᴇ : {line}",
                     fill="white",
                     stroke_width=1,
-                    stroke_fill="black",
+                    stroke_fill="white",
                     font=font,
                 )
-        except:
-            pass
-        text_w, text_h = draw.textsize(f"YouTube: Jankari Ki Duniya", font=arial)
-        draw.text(
-            ((1280 - text_w) / 2, 620),
-            f"YouTube: Jankari Ki Duniya",
-            fill="white",
-            font=arial,
-        )
-        text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
-        draw.text(
-            ((1280 - text_w) / 2, 660),
-            f"Duration: {duration} Mins",
-            fill="black",
-            font=arial,
-        )
+            if j == 0:
+                j += 1
+                draw.text(
+                    (600, 330),
+                    f"{line}",
+                    fill="white",
+                    stroke_width=1,
+                    stroke_fill="white",
+                    font=font,
+                )
 
+        draw.text(
+            (600, 450),
+            f"Views : {views[:23]}",
+            fill="white",
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
+        )
+        draw.text(
+            (600, 500),
+            f"Duration : {duration[:23]} Mins",
+            fill="white",
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
+        )
+        draw.text(
+            (600, 550),
+            f"Channel : {channel}",
+            fill="white",
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
+        )
         try:
             os.remove(f"cache/thumb{videoid}.png")
         except:
