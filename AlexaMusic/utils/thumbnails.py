@@ -54,8 +54,9 @@ def truncate(text):
 
 async def gen_thumb(videoid, user_id, theme):
     if os.path.isfile(f"cache/{videoid}_{user_id}.png"):
-        return f"cache/{videoid}_{user_id}.png"
-    url = f"https://www.youtube.com/watch?v={videoid}"
+        return f"cache/{videoid}.jpg"
+
+        url = f"https://www.youtube.com/watch?v={videoid}"
         if 1==1:
             results = VideosSearch(url, limit=1)
             for result in (await results.next())["result"]:
@@ -162,8 +163,9 @@ async def gen_thumb(videoid, user_id, theme):
 
 async def gen_qthumb(videoid, user_id, theme):
     if os.path.isfile(f"cache/que{videoid}_{user_id}.png"):
-        return f"cache/que{videoid}_{user_id}.png"
-    url = f"https://www.youtube.com/watch?v={videoid}"
+        return f"cache/{videoid}.jpg"
+
+        url = f"https://www.youtube.com/watch?v={videoid}"
         if 1==1:
             results = VideosSearch(url, limit=1)
             for result in (await results.next())["result"]:
