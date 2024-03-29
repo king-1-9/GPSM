@@ -35,11 +35,11 @@ async def gen_thumb(videoid, user_id, theme):
         if os.path.isfile(f"cache/{videoid}_{user_id}.png"):
             return f"cache/{videoid}_{user_id}.png"
 
-    url = f"https://www.youtube.com/watch?v={videoid}"
-    try:
-        results = VideosSearch(url, limit=1)
-        for result in (await results.next())["result"]:
-            try:
+        url = f"https://www.youtube.com/watch?v={videoid}"
+        if 1==1:
+            results = VideosSearch(url, limit=1)
+            for result in (await results.next())["result"]:
+                try:
                 title = result["title"]
                 title = re.sub("\W+", " ", title)
                 title = title.title()
@@ -178,11 +178,11 @@ async def gen_qthumb(videoid, user_id, theme):
         if os.path.isfile(f"cache/{videoid}_{user_id}.png"):
             return f"cache/{videoid}_{user_id}.png"
 
-    url = f"https://www.youtube.com/watch?v={videoid}"
-    try:
-        results = VideosSearch(url, limit=1)
-        for result in (await results.next())["result"]:
-            try:
+        url = f"https://www.youtube.com/watch?v={videoid}"
+        if 1==1:
+            results = VideosSearch(url, limit=1)
+            for result in (await results.next())["result"]:
+                try:
                 title = result["title"]
                 title = re.sub("\W+", " ", title)
                 title = title.title()
