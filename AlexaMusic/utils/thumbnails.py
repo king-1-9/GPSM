@@ -8,8 +8,8 @@ import aiohttp
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 from youtubesearchpython.__future__ import VideosSearch
 
-from AloneXMusic import app
-from config import YOUTUBE_IMG_URL, BOT_NAME
+from AlexaMusic import app
+from config import YOUTUBE_IMG_URL
 
 
 def changeImageSize(maxWidth, maxHeight, image):
