@@ -167,9 +167,6 @@ async def gen_thumb(videoid, user_id, theme):
         pass
     background.save(f"cache/{videoid}_v4.png")
     return f"cache/que{videoid}_{user_id}.png"
-    except Exception as e:
-        print(e)
-        return YOUTUBE_IMG_URL
     
 
 async def gen_qthumb(videoid, user_id, theme):
@@ -257,9 +254,7 @@ async def gen_qthumb(videoid, user_id, theme):
         pass
     background.save(f"cache/{videoid}_v4.png")
     return f"cache/que{videoid}_{user_id}.png"
-    except Exception as e:
-        print(e)
-        return YOUTUBE_IMG_URL
+    
         
 
     
