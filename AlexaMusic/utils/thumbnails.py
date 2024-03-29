@@ -158,19 +158,18 @@ async def gen_thumb(videoid, user_id, theme):
     
     start_point_white = (text_x_position + red_length, 380)
     end_point_white = (text_x_position + line_length, 380)
-    draw.line([start_point_white, end_point_white], fill="white", width=8
-    )
-        try:
-            os.remove(f"cache/thumb{videoid}.png")
-        except:
-            pass
-        background.save(f"cache/{videoid}_{user_id}.png")
-        return f"cache/{videoid}_{user_id}.png"
+    draw.line([start_point_white, end_point_white], fill="white", width=8)
+        
+
+    try:
+        os.remove(f"cache/thumb{videoid}.png")
+    except:
+        pass
+    background.save(f"cache/{videoid}_v4.png")
+    return f"cache/que{videoid}_{user_id}.png"
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
-
-    
     
 
 async def gen_qthumb(videoid, user_id, theme):
@@ -249,14 +248,15 @@ async def gen_qthumb(videoid, user_id, theme):
     
     start_point_white = (text_x_position + red_length, 380)
     end_point_white = (text_x_position + line_length, 380)
-    draw.line([start_point_white, end_point_white], fill="white", width=8
-    )
-        try:
-            os.remove(f"cache/thumb{videoid}.png")
-        except:
-            pass
-        background.save(f"cache/{videoid}_{user_id}.png")
-        return f"cache/{videoid}_{user_id}.png"
+    draw.line([start_point_white, end_point_white], fill="white", width=8)
+
+
+    try:
+        os.remove(f"cache/thumb{videoid}.png")
+    except:
+        pass
+    background.save(f"cache/{videoid}_v4.png")
+    return f"cache/que{videoid}_{user_id}.png"
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
