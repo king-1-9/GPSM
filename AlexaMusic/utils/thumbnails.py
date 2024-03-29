@@ -160,7 +160,6 @@ async def gen_thumb(videoid, user_id, theme):
     end_point_white = (text_x_position + line_length, 380)
     draw.line([start_point_white, end_point_white], fill="white", width=8)
 
-    
     try:
             os.remove(f"cache/thumb{videoid}.png")
         except:
@@ -170,7 +169,7 @@ async def gen_thumb(videoid, user_id, theme):
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
-
+    
 
 async def gen_qthumb(videoid, user_id, theme):
     if os.path.isfile(f"cache/que{videoid}_{user_id}.png"):
@@ -260,4 +259,3 @@ async def gen_qthumb(videoid, user_id, theme):
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
-                        
