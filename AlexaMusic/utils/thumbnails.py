@@ -149,8 +149,9 @@ async def gen_thumb(videoid, user_id, theme):
             image2 = ImageOps.expand(image2,border=20,fill=make_col())
             image2 = image2.convert('RGB')
             image2.save(f"cache/{videoid}.jpg")
-            file = f"cache/{videoid}.jpg"
-            return file
+            file = f"cache/que{videoid}_{user_id}.png"
+        background.save(f"cache/que{videoid}_{user_id}.png")
+        return f"cache/que{videoid}_{user_id}.png"
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
@@ -258,8 +259,9 @@ async def gen_qthumb(videoid, user_id, theme):
             image2 = ImageOps.expand(image2,border=20,fill=make_col())
             image2 = image2.convert('RGB')
             image2.save(f"cache/{videoid}.jpg")
-            file = f"cache/{videoid}.jpg"
-            return file
+            file = f"cache/que{videoid}_{user_id}.png"
+        background.save(f"cache/que{videoid}_{user_id}.png")
+        return f"cache/que{videoid}_{user_id}.png"
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
