@@ -45,7 +45,6 @@ PLAY_COMMAND = get_command("PLAY_COMMAND")
 @app.on_message(
  filters.command(PLAY_COMMAND,"")
     & filters.private
-    & ~filters.edited
     & ~BANNED_USERS)
 @PlayWrapper
 async def play_commnd(
