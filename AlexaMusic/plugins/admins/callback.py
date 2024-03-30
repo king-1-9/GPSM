@@ -40,7 +40,7 @@ from AlexaMusic.utils.database import (
 )
 from AlexaMusic.utils.decorators.language import languageCB
 from AlexaMusic.utils.formatters import seconds_to_min
-from AlexaMusic.utils.inline.play import panel_markup_1, stream_markup, telegram_markup
+from AlexaMusic.utils.inline.play import panel_markup_1, stream_markup, stream_markup_timer, telegram_markup
 from AlexaMusic.utils.stream.autoclear import auto_clean
 from AlexaMusic.utils.thumbnails import gen_thumb
 from AlexaMusic.utils.theme import check_theme
@@ -408,3 +408,87 @@ async def del_back_playlist(client, CallbackQuery, _):
             db[chat_id][0]["played"] += duration_to_skip
         string = _["admin_33"].format(seconds_to_min(to_seek))
         await mystic.edit_text(f"{string}\n\nᴄʜᴀɴɢᴇs ᴅᴏɴᴇ ʙʏ : {mention} !")
+
+
+
+async def markup_timer():
+    while not await asyncio.sleep(200):
+        active_chats = await get_active_chats()
+        for chat_id in active_chats:
+            try:
+                if not await is_music_playing(chat_id):
+                    continue
+                playing = db.get(chat_id)
+                if not playing:
+                    continue
+                duration_seconds = int(playing[0]["seconds"])
+                if duration_seconds == 0:
+                    continue
+                try:
+                    mystic = playing[0]["markup"]
+                except:
+                    continue
+                try:
+                    check = checker[chat_id][mystic.id]
+                    if check is False:
+                        continue
+                except:
+                    pass
+                try:
+                    language = await get_lang(chat_id)
+                    _ = get_string(language)
+                except:
+                    _ = get_string("en")
+                try:
+                    mystic = playing[0]["mystic"]
+                    markup = playing[0]["markup"]
+                except:
+                    continue
+                try:
+                    check = wrong[chat_id][mystic.id]
+                    if check is False:
+                        continue
+                except:
+                    pass
+                try:
+                    language = await get_lang(chat_id)
+                    _ = get_string(language)
+                except:
+                    _ = get_string("en")
+                try:
+                    mystic = playing[0]["mystic"]
+                    markup = playing[0]["markup"]
+                except:
+                    continue
+                try:
+                    check = wrong[chat_id][mystic.id]
+                    if check is False:
+                        continue
+                except:
+                    pass
+                try:
+                    language = await get_lang(chat_id)
+                    _ = get_string(language)
+                except:
+                    _ = get_string("en")
+                try:
+                    buttons = (
+                        stream_markup_timer(
+                            _,
+                            playing[0]["vidid"],
+                            chat_id,
+                            seconds_to_min(playing[0]["played"]),
+                            playing[0]["dur"],
+                        )
+                    )
+                    await mystic.edit_reply_markup(
+                        reply_markup=InlineKeyboardMarkup(buttons)
+                    )
+                except:
+                    continue
+            except:
+                continue
+
+
+asyncio.create_task(markup_timer())
+                
