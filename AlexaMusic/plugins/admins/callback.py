@@ -91,6 +91,23 @@ async def del_back_playlist(client, CallbackQuery, _):
     wrong[chat_id][CallbackQuery.message.id] = True
 
 
+@app.on_callback_query(filters.regex("MusicMarkup") & ~BANNED_USERS)
+@languageCB
+async def music_markup(client, CallbackQuery, _):
+    await CallbackQuery.answer()
+    callback_data = CallbackQuery.data.strip()
+    callback_request = callback_data.split(None, 1)[1]
+    videoid, chat_id = callback_request.split("|")
+    buttons = stream_markup(_, videoid, chat_id)
+    chat_id = CallbackQuery.message.chat.id
+    try:
+        await CallbackQuery.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except:
+        return
+
+
 downvote = {}
 downvoters = {}
 
