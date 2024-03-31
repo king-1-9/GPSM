@@ -118,7 +118,14 @@ def stream_markup(_, videoid, chat_id):
                 text=_["PL_B_3"],
                 callback_data=f"PanelMarkup None|{chat_id}",
             ),
-            InlineKeyboardButton(text="ᴀʟᴇxᴀ ᴄʜᴀᴛ 💌", url=f"https://t.me/Alexa_Help"),
+        ],
+        [
+            InlineKeyboardButton(
+                text= "📥 ᴠɪᴅᴇᴏ",
+                callback_data=f"downloadvideo {videoid}"),
+            InlineKeyboardButton(
+                text= "📥 ᴀᴜᴅɪᴏ",
+                callback_data=f"downloadaudio {videoid}"),
         ],
     ]
     return buttons
