@@ -114,9 +114,9 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
 
 
 
-REPLY_MESSAGE = "- اهلين ياعيني عندك الازرار تحت استمتع"
+start_pannel = "- اهلين ياعيني عندك الازرار تحت استمتع"
 
-REPLY_MESSAGE_BUTTONS = [
+start_pannel_BUTTONS = [
          [
              ("طريقة تشغيل ميرا"),                   
              ("اوامر ميرا")
@@ -132,7 +132,7 @@ REPLY_MESSAGE_BUTTONS = [
 ]
 
   
-@app.on_message(filters.private & filters.command("commands"))
+@app.on_message(filters.private & filters.command(""))
 async def cpanel(_, message: Message):             
         text = REPLY_MESSAGE
         reply_markup = ReplyKeyboardMarkup(REPLY_MESSAGE_BUTTONS, resize_keyboard=True)
