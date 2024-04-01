@@ -114,9 +114,9 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
 
 
 
-start_pannel = "- اهلين ياعيني عندك الازرار تحت استمتع"
+REPLY_MESSAGE = "- اهلين ياعيني عندك الازرار تحت استمتع"
 
-start_pannel_BUTTONS = [
+REPLY_MESSAGE_BUTTONS = [
          [
              ("طريقة تشغيل ميرا"),                   
              ("اوامر ميرا")
