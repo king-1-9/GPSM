@@ -14,7 +14,6 @@ import asyncio
 
 from pyrogram import filters
 from pyrogram import enums, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
 
 import config
@@ -39,6 +38,15 @@ from AlexaMusic.utils.database import (
 from AlexaMusic.utils.decorators.language import LanguageStart
 from AlexaMusic.utils.inline import help_pannel, private_panel, start_pannel
 from AlexaMusic.utils.command import commandpro
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    InputMediaPhoto,
+    Message,
+)
 
 loop = asyncio.get_running_loop()
 
