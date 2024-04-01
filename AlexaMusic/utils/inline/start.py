@@ -12,10 +12,24 @@ as you want or you can collabe if you have new ideas.
 
 from typing import Union
 
-from pyrogram.types import InlineKeyboardButton
-
 from config import GITHUB_REPO, SUPPORT_CHANNEL, SUPPORT_GROUP
 from AlexaMusic import app
+import asyncio
+import re
+import os
+import random
+import requests
+from pyrogram import Client, filters
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    InputMediaPhoto,
+    Message,
+)
+from strings.filters import command
 
 
 def start_pannel(_):
@@ -96,3 +110,82 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             )
     buttons.append([InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG")])
     return buttons
+
+
+
+
+@app.on_message(filters.private & command("اوامر القنوات"))
+async def channvom(client: Client, message: Message):
+    await message.reply_text(f"""\n\n╭── • [𝗠𝗶𝗿𝗮 𝗠𝘂𝘀𝗶𝗰](t.me/NvvvC) • ──╮\n\n ✧ **اوامر التشغيل بالقنوات**\n\n• **ق تشغيل + اسم الاغنية او بالرد** \n-› لتشغيل الاغاني بالقناة\n\n• **ق ايقاف**\n-› لايقاف تشغيل جميع الصوتيات بالمكالمة\n\n• **ق تخطي**\n-› لتشغيل التالي بالانتظار\n\n • **ق اص**\n-› لكتم صوت الحساب المساعد بالمكالمة\n\n• **ق كملي**\n-› لالغاء الكتم واكمال التشغيل\n\n• **ق ايقاف مؤقت**\n -› لايقاف التشغيل بشكل مؤقت\n\n• **ق استئناف**\n -› لاكمال التشغيل بعد الايقاف المؤقت\n\n╰── • [𝗠𝗶𝗿𝗮 𝗠𝘂𝘀𝗶𝗰](t.me/NvvvC) • ──╯""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "", url=f"https://t.me/UUUOLC"),
+                ],[
+                    InlineKeyboardButton(
+                        "• ضيفني لقروبك 🎻", url=f"https://t.me/NKQbot?startgroup=true"),
+                ],
+            ]
+        ),
+        disable_web_page_preview=True
+    )
+
+
+
+@app.on_message(filters.private & command("طريقة البحث"))
+async def dowmmr(client: Client, message: Message):
+    await message.reply_text(f"""اهلين فيك في قسم التحميل ♪
+للبحث عن اغنية او فيديو استخدم الامر التالي ↓
+
+[ بحث + اسم المطلوب ..]
+
+مثال -› بحث بحبك وحشتني
+
+- الامر يشتغل بخاص البوت والمجموعة ايضا .""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "", url=f"https://t.me/UUUOLC"),
+                ],[
+                    InlineKeyboardButton(
+                        "• ضيفني لقروبك 🎻", url=f"https://t.me/NKQbot?startgroup=true"),
+                ],
+            ]
+        ),
+        disable_web_page_preview=True
+    )
+@app.on_message(filters.private & command("حفظ التشغيل"))
+async def dowhmr(client: Client, message: Message):
+    await message.reply_text(f"""✧ **اهلين فيك في قسم حفظ التشغيل**\n\n- **حفظ التشغيل هو حفظ الاغاني الي اشتغلت بالمجموعة وحفظها يعني انك تقدر تشغلها بدون ما ترجع تبحث عنها مرة ثانية وتبقى محفوظة لك فقط**\n\n- عشان تحفظ الاغنية او المُشغل الحالي بالمكالمة لازم تضغط على زر -› ( **حفظ التشغيل** )\n\n- عشان تشوف الاغاني او الصوتيات الي حفظتها اكتب امر -› ( **قائمة تشغيلي** )\n\n- وطريقة تشغيل قائمتك تكتب فقط امر -› ( **تشغيل قائمتي** )\n\n- طريقة حذف اغنية او مقطع من محفوظاتك تكتب امر -› ( **حذف تشغيلي** ) وتكمل الخطوات بخاص البوت ..\n\n✶ **ملاحظة : اذا حفظت اغنية بتكون محفوظة عندك فقط يعني كل شخص عنده قائمة تشغيل خاصة فيه ومحد يقدر يحفظ اغنية عندك والعكس ايضا\n✶ لو ما فهمت تابع الفيديو الي فوق عشان تفهم اكثر ❤️**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "", url=f"https://t.me/UUUOLC"),
+                ],[
+                    InlineKeyboardButton(
+                        "• ضيفني لقروبك 🎻", url=f"https://t.me/NKQbot?startgroup=true"),
+                ],
+            ]
+        ),
+        disable_web_page_preview=True
+    )
+
+@app.on_message(filters.private & command("ربط القنوات"))
+async def dowhmo(client: Client, message: Message):
+    await message.reply_text("""- هلا والله\n◌**عشان تشغل بالقنوات لازم تسوي بعض الخطوات وهي◌** :\n\n1 -› تدخل البوت قناتك وترفعه مشرف\n2 -› ترجع للقروب وتكتب { **ربط + يوزر القناة** }\n3 -› **اضغط على زر اوامر التشغيل عشان تعرف كيف تشغل**..""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "", url=f"https://t.me/UUUOLC"),
+                ],[
+                    InlineKeyboardButton(
+                        "• ضيفني لقروبك 🎻", url=f"https://t.me/NKQbot?startgroup=true"),
+                ],
+            ]
+        ),
+        disable_web_page_preview=True
+    )
