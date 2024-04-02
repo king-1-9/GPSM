@@ -13,8 +13,8 @@ r = redis.from_url(redis_url, encoding="utf-8",decode_responses=True)
 
 
 # ------------------------------------------------
-
-    if message.text == "/hmd" or len(message.command) == 2 and message.command[1] == "hmd":
+@app.on_message(filters.command("hmd", prefixes=['!','/',''], case_sensitive=False) & filters.private)
+async def start_message(client, message):
         await message.reply_text("مرحبا بك معنا في منصة القرآن الكريم على التيليجرام .\n\n[للملاحظات و الاقتراحات](t.me/J_1_E) , ولا تتردد في زيارة [قناتنا](t.me/i88Y8) .", disable_web_page_preview=True)
         await message.reply_text("كيف تفضل طريقة الاختيار ؟", reply_markup=ReplyKeyboardMarkup(
             keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
