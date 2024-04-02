@@ -25,7 +25,7 @@ from pyrogram.types import (
 from pyrogram import filters
 
 # ------------------------------------------------
-@app.on_message(filters.private & filters.command("قراء"))
+@app.on_message(filters.private & filters.command(["قراء"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])  
 async def shoice_reader(client, message):
     await message.reply_text("كيف تفضل طريقة الاختيار ؟", quote=True, reply_markup=ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
@@ -33,7 +33,7 @@ async def shoice_reader(client, message):
 # ------------------------------------------------
 
 
-@app.on_message(filters.private & filters.command("القائمة الرئيسية"))
+@app.on_message(filters.private & filters.command(["القائمة الرئيسية"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])  
 async def shoice_reader(client, message):
     await message.reply_text("كيف تفضل طريقة الاختيار ؟", quote=True, reply_markup=ReplyKeyboardMarkup(
         keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
@@ -41,7 +41,7 @@ async def shoice_reader(client, message):
 # ------------------------------------------------
 
 
-@app.on_message(filters.private & filters.command("عشوائي ➰"))
+@app.on_message(filters.private & filters.command(["عشوائي ➰"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])  
 async def random_reader(client, message):
 
     num_reciter = random.randint(0, 200)
@@ -57,7 +57,7 @@ async def random_reader(client, message):
 
 # ------------------------------------------------
 
-@app.on_message(filters.private & filters.command("سأختار 🤍"))
+@app.on_message(filters.private & filters.command(["سأختار 🤍"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])  
 async def shoice_reader(client, message):
     keyboard = ReplyKeyboardMarkup(keyboard=[
         [KeyboardButton("القائمة الرئيسية")],
