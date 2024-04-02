@@ -10,7 +10,7 @@ as you want or you can collabe if you have new ideas.
 """
 
 
-import asyncio
+import asyncio, redis, requests, datetime, random
 
 from pyrogram import filters
 from pyrogram import enums, filters
@@ -226,10 +226,9 @@ async def start_comm(client, message: Message, _):
 @LanguageStart
 async def testbot(client, message: Message, _):
     out = start_pannel(_)
-    return await message.reply_text(
-        _["start_1"].format(message.chat.title, config.MUSIC_BOT_NAME),
-        reply_markup=InlineKeyboardMarkup(out),
-    )
+    await message.reply_text("مرحبا بك معنا في منصة القرآن الكريم على التيليجرام .\n\n[للملاحظات و الاقتراحات](t.me/J_1_E) , ولا تتردد في زيارة [قناتنا](t.me/i88Y8) .", disable_web_page_preview=True)
+        await message.reply_text("كيف تفضل طريقة الاختيار ؟", reply_markup=InlineKeyboardMarkup(out)
+            keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
 
 
 welcome_group = 2
