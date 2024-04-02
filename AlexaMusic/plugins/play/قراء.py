@@ -135,7 +135,6 @@ surahss = ["سورة الفاتحة", "سورة البقرة", "سورة آل ع
 @app.on_message(filters.command(commands=surahs, prefixes=['!','/',''],case_sensitive=False))
 @app.on_message(filters.command(commands=surahss, prefixes=['!','/',''],case_sensitive=False))
 async def send_audio(client, message):
-    if reader:
         await message.reply_text(f"`لقد اخترت سورة {message.text.replace('سورة ', '')} من القارئ {reader} برواية حفص عن عاصم - مرتل , ستصل لك في لحظات ..`")
         num_reader = available_reciters.index(reader)
         url = available_urls[num_reader]
