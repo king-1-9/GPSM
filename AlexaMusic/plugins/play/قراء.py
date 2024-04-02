@@ -118,7 +118,7 @@ async def shoice_reader(client, message):
 
 # ------------------------------------------------
 
-@app.on_message(filters.command(commands=available_reciters, prefixes=['!','/',''],case_sensitive=False) & filters.private)
+@app.on_message(filters.private & filters.command(["available_reciters"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])  
 async def shoice_surah(client, message):
     keyboard = ReplyKeyboardMarkup(keyboard=[
         [KeyboardButton("القائمة الرئيسية")],
