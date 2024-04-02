@@ -5,7 +5,6 @@ from AlexaMusic import app
 from helper import available_reciters, available_urls, data_souar, dict_souar
 
 
-
 # ------------------------------------------------
 @app.on_message(filters.private & filters.command(["قراء"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])) 
 async def shoice_reader(client, message):
