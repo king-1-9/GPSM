@@ -96,8 +96,7 @@ async def shoice_reader(client, message):
         ],
         resize_keyboard=True, one_time_keyboard=False
     )
-    r.hset("QURAN-Reader", message.from_user.id, message.text)
-    await message.reply_text("فضلا اختر السورة المراد الاستماع لها ...", quote=True, reply_markup=keyboard)
+    await message.reply_text("فضلا اختر القارئ المراد الاستماع له ...", quote=True, reply_markup=keyboard)
 
 # ------------------------------------------------
 
@@ -131,6 +130,7 @@ async def shoice_surah(client, message):
     ],
         resize_keyboard=True, one_time_keyboard=False
     )
+    r.hset("QURAN-Reader", message.from_user.id, message.text)
     await message.reply_text("فضلا اختر السورة المراد الاستماع لها ...", quote=True, reply_markup=keyboard)
 
 # ------------------------------------------------
@@ -149,5 +149,7 @@ async def send_audio(client, message):
         print(f"{url}{number}")
         await message.reply_audio(audio=f"{url}{number}.mp3")
 
-
 # ------------------------------------------------
+
+print("$ The bot is working now")
+asyncio.get_event_loop().run_until_complete(app.run())
