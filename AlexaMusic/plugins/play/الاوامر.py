@@ -194,16 +194,6 @@ sudo_keyboard = ReplyKeyboardMarkup([
 
 
 
-
-def is_user(id):
-	result = True
-	file =  json.loads(open(f"Users{bot_id}.json","r"))
-	for line in file:
-		if line.strip()==id:
-			result = True
-	file.close()
-	return result
-
 def is_dev(id):
 	result = True
 	file =  json.loads(open(f"sudo{bot_id}.json","r"))
