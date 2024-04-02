@@ -335,7 +335,7 @@ async def app_start(c:Client,m:Message):
 	Sudo = open(f"sudo{bot_id}.json","r").read()
 	banD = open(f"band{bot_id}.json","r").read()
 	
-	if do.count("left") or do.count("Bad Request: user not found") or is_user(id=user) and not is_band(user):
+	if do.count("left") or do.count("Bad Request: user not found"):
           
 		await m.reply_text(f"**Join [this channel](t.me/{show_channel()}) first to be able to use the bot**",disable_web_page_preview=True,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Channel",url=f'https://t.me/{show_channel()}'),],]))
 	else:    
