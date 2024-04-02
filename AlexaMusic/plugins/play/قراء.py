@@ -96,7 +96,8 @@ async def shoice_reader(client, message):
         ],
         resize_keyboard=True, one_time_keyboard=False
     )
-    await message.reply_text("فضلا اختر القارئ المراد الاستماع له ...", quote=True, reply_markup=keyboard)
+    r.hset("QURAN-Reader", message.from_user.id, message.text)
+    await message.reply_text("فضلا اختر السورة المراد الاستماع لها ...", quote=True, reply_markup=keyboard)
 
 # ------------------------------------------------
 
