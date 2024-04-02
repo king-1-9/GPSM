@@ -5,6 +5,10 @@ from AlexaMusic import app
 from helper import available_reciters, available_urls, data_souar, dict_souar
 
 
+redis_url = "redis://default:ETw7er7MYHFCWvHIdi8c0BvfKtJKyqSD@redis-16065.c278.us-east-1-4.ec2.cloud.redislabs.com:16065"
+r = redis.from_url(redis_url, encoding="utf-8",decode_responses=True)
+
+
 # ------------------------------------------------
 @app.on_message(filters.private & filters.command(["قراء"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])) 
 async def shoice_reader(client, message):
@@ -135,7 +139,7 @@ surahss = ["سورة الفاتحة", "سورة البقرة", "سورة آل ع
 @app.on_message(filters.command(commands=surahs, prefixes=['!','/',''],case_sensitive=False))
 @app.on_message(filters.command(commands=surahss, prefixes=['!','/',''],case_sensitive=False))
 async def send_audio(client, message):
-    reader = r.hget(message.from_user.id)
+    reader = r.hget("QURAN-Reader", message.from_user.id)
     if reader:
         await message.reply_text(f"`لقد اخترت سورة {message.text.replace('سورة ', '')} من القارئ {reader} برواية حفص عن عاصم - مرتل , ستصل لك في لحظات ..`")
         num_reader = available_reciters.index(reader)
@@ -143,4 +147,6 @@ async def send_audio(client, message):
         number = data_souar[message.text.replace('سورة ', '')]
         print(f"{url}{number}")
         await message.reply_audio(audio=f"{url}{number}.mp3")
+
+
 # ------------------------------------------------
