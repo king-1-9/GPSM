@@ -227,7 +227,8 @@ async def start_comm(client, message: Message, _):
 async def testbot(client, message: Message, _):
     out = start_pannel(_)
     await message.reply_text("مرحبا بك معنا في منصة القرآن الكريم على التيليجرام .\n\n[للملاحظات و الاقتراحات](t.me/J_1_E) , ولا تتردد في زيارة [قناتنا](t.me/i88Y8) .", disable_web_page_preview=True)
-        await message.reply_text("كيف تفضل طريقة الاختيار ؟", reply_markup=InlineKeyboardMarkup(out)
+        await message.reply_text("كيف تفضل طريقة الاختيار ؟", reply_markup=InlineKeyboardMarkup(out),
+            )
             keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
 
 
