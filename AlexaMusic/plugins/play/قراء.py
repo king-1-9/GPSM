@@ -136,7 +136,6 @@ surahss = ["سورة الفاتحة", "سورة البقرة", "سورة آل ع
 @app.on_message(filters.command(commands=surahss, prefixes=['!','/',''],case_sensitive=False))
 async def send_audio(client, message):
 
-    num_reciter = random.randint(0, 200)
     url_reciter = available_urls[num_reciter]
     rand_surah = random.choice(dict_souar)
     num_surah = data_souar[rand_surah]
@@ -146,6 +145,5 @@ async def send_audio(client, message):
         await client.send_audio(message.chat.id, audio=link)
     except:
         await msg.edit_text(text="عذراً ، حدث خطأ")
-
 
 # ------------------------------------------------
