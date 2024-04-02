@@ -229,7 +229,7 @@ async def testbot(client, message: Message, _):
     return await message.reply_text(
         _["start_1"].format(message.chat.title, config.MUSIC_BOT_NAME),
         reply_markup=InlineKeyboardMarkup(out),
-    keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
+    )
 
 
 welcome_group = 2
