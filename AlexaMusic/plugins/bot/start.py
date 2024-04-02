@@ -231,8 +231,7 @@ async def testbot(client, message: Message, _):
         photo=config.START_IMG_URL,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
-    )keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
-
+    )
 
 welcome_group = 2
 
