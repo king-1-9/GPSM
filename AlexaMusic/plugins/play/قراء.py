@@ -151,4 +151,4 @@ async def send_audio(client, message):
 
 # ------------------------------------------------
 print("$ The bot is working now")
-asyncio.get_event_loop().run_until_complete(
+asyncio.get_event_loop()
