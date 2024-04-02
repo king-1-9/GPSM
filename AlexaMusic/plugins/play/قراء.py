@@ -3,6 +3,26 @@ from pyrogram import filters, Client
 from pyrogram.types import KeyboardButton, InlineKeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, ReplyKeyboardRemove, Message
 
 from helper import available_reciters, available_urls, data_souar, dict_souar
+from typing import Union
+
+from config import GITHUB_REPO, SUPPORT_CHANNEL, SUPPORT_GROUP
+from AlexaMusic import app
+import asyncio
+import re
+import os
+import random
+import requests
+from pyrogram import Client, filters
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    InputMediaPhoto,
+    Message,
+)
+from pyrogram import filters
 
 # ------------------------------------------------
 @app.on_message(filters.private & filters.command("قراء"))
