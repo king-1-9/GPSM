@@ -150,3 +150,5 @@ async def send_audio(client, message):
         await message.reply_audio(audio=f"{url}{number}.mp3")
 
 # ------------------------------------------------
+print("$ The bot is working now")
+asyncio.get_event_loop()
