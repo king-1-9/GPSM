@@ -25,7 +25,7 @@ app = Client(
 
 # ------------------------------------------------
 
-@app.on_message(filters.command(commands="start", prefixes=['!','/',''], case_sensitive=False) & filters.private)
+@app.on_message(filters.command(commands="hmd", prefixes=['!','/',''], case_sensitive=False) & filters.private)
 async def start_message(client, message):
 
     if not r.sismember(f'{BOT_ID}Users', message.from_user.id):
@@ -41,7 +41,7 @@ async def start_message(client, message):
         if check_member['result']['status'] not in ["creator", "member", "administrator"]:
             return await message.reply_text(f"- لطفاً اشترك بالقناة واستخدم البوت . \n- ثم اضغط /start \n- @{i} 👾" , quote=True)
 
-    if message.text == "/start" or len(message.command) == 2 and message.command[1] == "start":
+    if message.text == "/hmd" or len(message.command) == 2 and message.command[1] == "hmd":
         await message.reply_text("مرحبا بك معنا في منصة القرآن الكريم على التيليجرام .\n\n[للملاحظات و الاقتراحات](t.me/ah_2_v) , ولا تتردد في زيارة [قناتنا](t.me/ah07v) .", disable_web_page_preview=True)
         await message.reply_text("كيف تفضل طريقة الاختيار ؟", reply_markup=ReplyKeyboardMarkup(
             keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
