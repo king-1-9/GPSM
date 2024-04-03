@@ -5,15 +5,47 @@ from AlexaMusic import app
 from helper import available_reciters, available_urls, data_souar, dict_souar
 
 
+BOT_TOKEN = "6124074769:AAHHsfHGTItFf3B8oDE8W3X87Aec5ma8Y_A"
+API_ID = 27015406
+API_HASH = "4346a15e8eed59a4906886b8f40d2d71"
+SUDO_ID = 1748768168
+
 redis_url = "redis://default:ETw7er7MYHFCWvHIdi8c0BvfKtJKyqSD@redis-16065.c278.us-east-1-4.ec2.cloud.redislabs.com:16065"
 r = redis.from_url(redis_url, encoding="utf-8",decode_responses=True)
 
+CHANNELS = ["ah07v"]
+BOT_ID = int(BOT_TOKEN.split(":")[0])
+
+app = Client(
+    name = "C_VGBOT",
+    api_id = API_ID,
+    api_hash = API_HASH,
+    bot_token = BOT_TOKEN,
+)
 
 # ------------------------------------------------
-@app.on_message(filters.private & filters.command(["قراء"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"])) 
-async def shoice_reader(client, message):
-    await message.reply_text("كيف تفضل طريقة الاختيار ؟", quote=True, reply_markup=ReplyKeyboardMarkup(
-        keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
+
+@app.on_message(filters.command(commands="start", prefixes=['!','/',''], case_sensitive=False) & filters.private)
+async def start_message(client, message):
+
+    if not r.sismember(f'{BOT_ID}Users', message.from_user.id):
+        r.sadd(f"{BOT_ID}Users", message.from_user.id)
+        now = datetime.datetime.now()
+        time, date = now.strftime("%p %I:%M"), now.strftime("%Y/%m/%d")
+        await client.send_message(SUDO_ID, f"مستخدم جديد دخل بوتك \n\n𝗡𝗔𝗠𝗘 ▸ {message.from_user.mention}\n𝗜𝗗 ▸ `{message.from_user.id}`\n𝗧𝗜𝗠𝗘 ▸ **{time}**\n𝗗𝗔𝗧𝗘 ▸ **{date}**", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(
+            inline_keyboard = [[InlineKeyboardButton(message.from_user.first_name, url=f"tg://openmessage?user_id={message.from_user.id}")]])
+        )
+
+    for i in CHANNELS:
+        check_member = requests.get('https://api.telegram.org/bot' + str(BOT_TOKEN) + '/getchatmember?chat_id=@' + str(i) + '&user_id=' + str(message.from_user.id)).json()
+        if check_member['result']['status'] not in ["creator", "member", "administrator"]:
+            return await message.reply_text(f"- لطفاً اشترك بالقناة واستخدم البوت . \n- ثم اضغط /start \n- @{i} 👾" , quote=True)
+
+    if message.text == "/start" or len(message.command) == 2 and message.command[1] == "start":
+        await message.reply_text("مرحبا بك معنا في منصة القرآن الكريم على التيليجرام .\n\n[للملاحظات و الاقتراحات](t.me/ah_2_v) , ولا تتردد في زيارة [قناتنا](t.me/ah07v) .", disable_web_page_preview=True)
+        await message.reply_text("كيف تفضل طريقة الاختيار ؟", reply_markup=ReplyKeyboardMarkup(
+            keyboard=[[KeyboardButton("عشوائي ➰"), KeyboardButton("سأختار 🤍")]], resize_keyboard=True))
+
 # ------------------------------------------------
 
 @app.on_message(filters.command(commands='القائمة الرئيسية', prefixes=['!','/',''], case_sensitive=False) & filters.private)
