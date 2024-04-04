@@ -51,11 +51,6 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 callback_data=f"PanelMarkup {videoid}|{chat_id}",
             )
         ],
-        [
-            InlineKeyboardButton(
-                text="إضغط لاضافتي لمجموعتك ✅ ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
-            )
-        ],
     ]
     return buttons
 
@@ -71,11 +66,6 @@ def telegram_markup_timer(_, chat_id, played, dur):
             InlineKeyboardButton(
                 text=_["PL_B_3"],
                 callback_data=f"PanelMarkup {videoid}|{chat_id}",
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text="إضغط لاضافتي لمجموعتك ✅ ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
             )
         ],
     ]
@@ -94,12 +84,7 @@ def stream_markup(_, videoid, chat_id):
             ),
             InlineKeyboardButton(
                 text=_["PL_B_3"],
-                callback_data=f"PanelMarkup {videoid}|{chat_id}",
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text="إضغط لاضافتي لمجموعتك ✅ ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
+                callback_data=f"PanelMarkup {videoid}|{chat_id}", 
             )
         ],
     ]
