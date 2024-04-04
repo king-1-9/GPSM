@@ -31,7 +31,7 @@ def language(mystic):
             language = await get_lang(message.chat.id)
             language = get_string(language)
         except:
-            language = get_string("en")
+            language = get_string("ar")
         return await mystic(_, message, language)
 
     return wrapper
@@ -49,7 +49,7 @@ def languageCB(mystic):
             language = await get_lang(CallbackQuery.message.chat.id)
             language = get_string(language)
         except:
-            language = get_string("en")
+            language = get_string("ar")
         return await mystic(_, CallbackQuery, language)
 
     return wrapper
@@ -61,7 +61,7 @@ def LanguageStart(mystic):
             language = await get_lang(message.chat.id)
             language = get_string(language)
         except:
-            language = get_string("en")
+            language = get_string("ar")
         return await mystic(_, message, language)
 
     return wrapper
