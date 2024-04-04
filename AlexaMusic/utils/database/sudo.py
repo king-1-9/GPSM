@@ -57,3 +57,18 @@ async def set_upvotes(chat_id: int, mode: int):
     await countdb.update_one(
         {"chat_id": chat_id}, {"$set": {"mode": mode}}, upsert=True
     )
+
+async def get_lang(chat_id: int) -> str:
+    mode = langm.get(chat_id)
+    if not mode:
+        lang = await langdb.find_one({"chat_id": chat_id})
+        if not lang:
+            langm[chat_id] = "en"
+            return "en"
+        langm[chat_id] = lang["lang"]
+        return lang["lang"]
+    return mode
+
+
+    async def get_active_chats() -> list:
+    return active
