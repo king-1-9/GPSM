@@ -1,6 +1,7 @@
 # Copyright (C) 2024 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
 # Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
 
+
 """"
 TheTeamAlexa is a project of Telegram bots with variety of purposes.
 Copyright (c) 2024 -present Team=Alexa <https://github.com/TheTeamAlexa>
@@ -22,7 +23,7 @@ def help_pannel(_, START: Union[bool, int] = None):
     second = [
         InlineKeyboardButton(
             text=_["BACK_BUTTON"],
-            callback_data="help_back",
+            callback_data="settingsback_helper",
         ),
         InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data=f"close"),
     ]
@@ -77,7 +78,7 @@ def help_back_markup(_):
             [
                 InlineKeyboardButton(
                     text=_["BACK_BUTTON"],
-                    callback_data=f"settingsback_helper",
+                    callback_data=f"settings_back_helper",
                 ),
                 InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data=f"close"),
             ]
