@@ -285,8 +285,27 @@ def slider_markup(
 ## Cpanel Markup
 
 
-def panel_markup_1(_, videoid, chat_id):
+def panel_markup_1(_, videoid, chat_id, played, dur):
+    played_sec = time_to_sec(played)
+    total_sec = time_to_sec(dur)
+
+    x, y = str(round(played_sec/total_sec,1)).split(".")
+    pos = int(y)
+
+    line = "—"
+    circle = "◉"
+
+    bar = line*(pos-1)
+    bar += circle
+    bar += line*(10-len(bar))
+
     buttons = [
+        [
+            InlineKeyboardButton(
+                text=f"{played} •{bar}• {dur}",
+                callback_data="GetTimer",
+            )
+        ],
         [
             InlineKeyboardButton(
                 text="▷",
