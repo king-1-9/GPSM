@@ -13,6 +13,7 @@ as you want or you can collabe if you have new ideas.
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import SUPPORT_GROUP, SUPPORT_CHANNEL
 import random
+import config
 
 ## After Edits with Timer Bar
 
@@ -52,7 +53,8 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
         ],
         [
             InlineKeyboardButton(
-                text=_["S_B_5"], url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
+                    text=_["S_B_5"],
+                    url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
             )
         ],
     ]
@@ -74,7 +76,8 @@ def telegram_markup_timer(_, chat_id, played, dur):
         ],
         [
             InlineKeyboardButton(
-                text=_["S_B_5"], url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
+                    text=_["S_B_5"],
+                    url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
             )
         ],
     ]
@@ -98,7 +101,8 @@ def stream_markup(_, videoid, chat_id):
         ],
         [
             InlineKeyboardButton(
-                text=_["S_B_5"], url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
+                    text=_["S_B_5"],
+                    url=f"https://t.me/{BOT_USERNAME}?startgroup=true"
             )
         ],
     ]
