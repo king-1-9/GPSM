@@ -34,32 +34,32 @@ def lanuages_keyboard(_):
             text="🇦🇺 ᴇɴɢʟɪsʜ 🇦🇺",
             callback_data=f"languages:ar",
         ),
-        InlineKeyboardButton(
-            text="🇮🇳 हिन्दी 🇮🇳",
-            callback_data=f"languages:hi",
-        ),
     )
     keyboard.row(
         InlineKeyboardButton(
+            text="🇮🇳 हिन्दी 🇮🇳",
+            callback_data=f"languages:hi",
+        ), 
+        InlineKeyboardButton(
             text="🇱🇰 සිංහල 🇱🇰",
-            callback_data=f"languages:si",
+            callback_data=f"languages:si,
         ),
+    )
+    keyboard.row(
         InlineKeyboardButton(
             text="🇦🇿 Azərbaycan 🇦🇿",
             callback_data=f"languages:az",
         ),
-    )
-    keyboard.row(
         InlineKeyboardButton(
             text="🇮🇳 ગુજરાતી 🇮🇳",
             callback_data=f"languages:gu",
         ),
+    )
+    keyboard.row(
         InlineKeyboardButton(
             text="🇹🇷 Türkiye Türkçesi 🇹🇷",
             callback_data=f"languages:tr",
         ),
-    )
-    keyboard.row(
         InlineKeyboardButton(
             text="🐕 ᴄʜᴇᴇᴍs 🐕",
             callback_data=f"languages:cheems",
