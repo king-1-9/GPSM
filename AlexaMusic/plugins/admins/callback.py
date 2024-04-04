@@ -35,7 +35,7 @@ async def markup_panel(client, CallbackQuery: CallbackQuery, _):
     buttons = buttons = panel_markup_1(_,
                             playing[0]["vidid"],
                             chat_id,
-                            seconds_to_min(playing[0]["played"]),
+                            time_to_sec(playing[0]["played"]),
                             playing[0]["dur"],)
     try:
         await CallbackQuery.edit_message_reply_markup(
