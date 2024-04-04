@@ -26,7 +26,7 @@ from AlexaMusic.utils.database import (
 )
 from AlexaMusic.utils.decorators.language import languageCB
 from AlexaMusic.utils.formatters import seconds_to_min
-from AlexaMusic.utils.inline import close_markup, stream_markup, stream_markup_timer
+from AlexaMusic.utils.inline import close_markup, stream_markup, stream_markup_timer, panel_markup_1
 from AlexaMusic.utils.stream.autoclear import auto_clean
 from AlexaMusic.utils.thumbnails import gen_thumb
 from config import BANNED_USERS, SOUNCLOUD_IMG_URL, STREAM_IMG_URL, TELEGRAM_AUDIO_URL, TELEGRAM_VIDEO_URL, adminlist, confirmer, votemode
@@ -87,43 +87,7 @@ async def music_markup(client, CallbackQuery, _):
     except:
         return
 
-@app.on_callback_query(filters.regex("Pages") & ~BANNED_USERS)
-@languageCB
-async def del_back_playlist(client, CallbackQuery, _):
-    await CallbackQuery.answer()
-    callback_data = CallbackQuery.data.strip()
-    chat_id = CallbackQuery.message.chat.id
-    playing = db.get(chat_id)
-    callback_request = callback_data.split(None, 1)[1]
-    state, pages, videoid, chat = callback_request.split("|")
-    chat_id = int(chat)
-    pages = int(pages)
-    if state == "Forw":
-        if pages == 0:
-            buttons = panel_markup_2(_, videoid, chat_id)
-        if pages == 2:
-            buttons = panel_markup_1(_, videoid, chat_id)
-        if pages == 1:
-            buttons = panel_markup_3(_, videoid, chat_id)
-    if state == "Back":
-        if pages == 2:
-            buttons = panel_markup_2(_, videoid, chat_id)
-        if pages == 1:
-            buttons = panel_markup_1(_, videoid, chat_id)
-        if pages == 0:
-            buttons = panel_markup_3(_, videoid, chat_id)
-        if pages == 3:
-            buttons = panel_markup_4(_,
-                            playing[0]["vidid"],
-                            chat_id,
-                            seconds_to_min(playing[0]["played"]),
-                            playing[0]["dur"],)
-    try:
-        await CallbackQuery.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
-    except:
-        return
+
 
 
 @app.on_callback_query(filters.regex("unban_assistant"))
