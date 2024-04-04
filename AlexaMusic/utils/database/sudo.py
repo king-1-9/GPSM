@@ -39,3 +39,21 @@ async def remove_sudo(user_id: int) -> bool:
         {"sudo": "sudo"}, {"$set": {"sudoers": sudoers}}, upsert=True
     )
     return True
+
+
+async def get_upvote_count(chat_id: int) -> int:
+    mode = count.get(chat_id)
+    if not mode:
+        mode = await countdb.find_one({"chat_id": chat_id})
+        if not mode:
+            return 5
+        count[chat_id] = mode["mode"]
+        return mode["mode"]
+    return mode
+
+
+async def set_upvotes(chat_id: int, mode: int):
+    count[chat_id] = mode
+    await countdb.update_one(
+        {"chat_id": chat_id}, {"$set": {"mode": mode}}, upsert=True
+    )
