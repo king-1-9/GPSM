@@ -2,9 +2,15 @@ from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from pyrogram.errors import PeerIdInvalid
 from asyncio import get_event_loop
-from config import bot, bot_id, db, SUDORS
 import asyncio, os
 from AlexaMusic import app
+
+SUDORS = [1748768168] # ايديات المطورين
+API_ID = 9028013
+API_HASH = "cc894fc40424f9c8bbcf06b7355bd69d"
+TOKEN = "6124074769:AAHHsfHGTItFf3B8oDE8W3X87Aec5ma8Y_A" # التوكن
+bot = Client("control",API_ID,API_HASH,bot_token=TOKEN,in_memory=True)
+bot_id = TOKEN.split(":")[0]
 
 def add_new_user(user_id):
 	if is_user(user_id):
