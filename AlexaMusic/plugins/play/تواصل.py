@@ -6,6 +6,11 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from AlexaMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 from AlexaMusic import app
 
+TOKEN = '6124074769:AAHHsfHGTItFf3B8oDE8W3X87Aec5ma8Y_A'
+app = Client("C_VGBOT",
+  api_id=9398500, api_hash="ad2977d673006bed6e5007d953301e13",
+  bot_token=TOKEN, 
+)
 bot_id = app.bot_token.split(":")[0]
 # Get ur redis url from https://app.redislabs.com/
 r = redis.from_url('redis://')
