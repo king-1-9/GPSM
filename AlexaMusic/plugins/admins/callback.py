@@ -27,6 +27,39 @@ from AlexaMusic.utils.thumbnails import gen_thumb
 wrong = {}
 
 
+@app.on_callback_query(filters.regex("MainMarkup") & ~BANNED_USERS)
+@languageCB
+async def del_back_playlists(client, CallbackQuery, _):
+    await CallbackQuery.answer()
+    callback_data = CallbackQuery.data.strip()
+    callback_request = callback_data.split(None, 1)[1]
+    videoid, chat_id = callback_request.split("|")
+    buttons = stream_markup(_, videoid, chat_id)
+    chat_id = CallbackQuery.message.chat.id
+    try:
+        await CallbackQuery.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except:
+        return
+
+@app.on_callback_query(filters.regex("MusicMarkup") & ~BANNED_USERS)
+@languageCB
+async def music_markup(client, CallbackQuery, _):
+    await CallbackQuery.answer()
+    callback_data = CallbackQuery.data.strip()
+    callback_request = callback_data.split(None, 1)[1]
+    videoid, chat_id = callback_request.split("|")
+    buttons = stream_markup(_, videoid, chat_id)
+    chat_id = CallbackQuery.message.chat.id
+    try:
+        await CallbackQuery.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except:
+        return
+
+
 @app.on_callback_query(filters.regex("PanelMarkup") & ~BANNED_USERS)
 @languageCB
 async def markup_panel(client, CallbackQuery: CallbackQuery, _):
