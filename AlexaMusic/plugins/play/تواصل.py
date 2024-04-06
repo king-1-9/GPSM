@@ -4,7 +4,7 @@ from pyrogram.types import *
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ReplyKeyboardMarkup
 from AlexaMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
-
+from AlexaMusic import app
 
 # Get ur redis url from https://app.redislabs.com/
 r = redis.from_url('redis://')
