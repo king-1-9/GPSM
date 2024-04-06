@@ -45,7 +45,7 @@ asyncio.create_task(timer())
 
 
 async def markup_timer():
-    while not await asyncio.sleep(4):
+    while not await asyncio.sleep(10):
         active_chats = await get_active_chats()
         for chat_id in active_chats:
             try:
@@ -78,13 +78,6 @@ async def markup_timer():
                         stream_markup_timer(
                             _,
                             playing[0]["vidid"],
-                            chat_id,
-                            seconds_to_min(playing[0]["played"]),
-                            playing[0]["dur"],
-                        )
-                        if markup == "stream"
-                        else telegram_markup_timer(
-                            _,
                             chat_id,
                             seconds_to_min(playing[0]["played"]),
                             playing[0]["dur"],
