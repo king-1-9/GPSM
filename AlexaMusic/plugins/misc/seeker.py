@@ -16,8 +16,7 @@ from AlexaMusic.misc import db
 from AlexaMusic.utils.database import (get_active_chats, get_lang,
                                        is_music_playing)
 from AlexaMusic.utils.formatters import seconds_to_min
-from AlexaMusic.utils.inline import (stream_markup_timer,
-                                     telegram_markup_timer)
+from AlexaMusic.utils.inline import (stream_markup_timer)
 
 from ..admins.callback import wrong
 
@@ -44,4 +43,50 @@ async def timer():
 
 asyncio.create_task(timer())
 
+
+async def markup_timer():
+    while not await asyncio.sleep(4):
+        active_chats = await get_active_chats()
+        for chat_id in active_chats:
+            try:
+                if not await is_music_playing(chat_id):
+                    continue
+                playing = db.get(chat_id)
+                if not playing:
+                    continue
+                duration_seconds = int(playing[0]["seconds"])
+                if duration_seconds == 0:
+                    continue
+                try:
+                    mystic = playing[0]["mystic"]
+                    markup = playing[0]["markup"]
+                except:
+                    continue
+                try:
+                    check = wrong[chat_id][mystic.message_id]
+                    if check is False:
+                        continue
+                except:
+                    pass
+                try:
+                    language = await get_lang(chat_id)
+                    _ = get_string(language)
+                except:
+                    _ = get_string("en")
+                try:
+                    buttons = (
+                        stream_markup_timer(
+                            _,
+                            playing[0]["vidid"],
+                            chat_id,
+                            seconds_to_min(playing[0]["played"]),
+                            playing[0]["dur"],
+                        )
+                except:
+                    continue
+            except:
+                continue
+
+
+asyncio.create_task(markup_timer())
 
