@@ -42,9 +42,6 @@ async def markup_panel(client, CallbackQuery: CallbackQuery, _):
         )
     except:
         return
-    if chat_id not in wrong:
-        wrong[chat_id] = {}
-    wrong[chat_id][CallbackQuery.message.message_id] = False
 
 
 @app.on_callback_query(filters.regex("MainMarkup") & ~BANNED_USERS)
@@ -65,9 +62,6 @@ async def del_back_playlist(client, CallbackQuery, _):
         )
     except:
         return
-    if chat_id not in wrong:
-        wrong[chat_id] = {}
-    wrong[chat_id][CallbackQuery.message.message_id] = True
 
 
 @app.on_callback_query(filters.regex("Pages") & ~BANNED_USERS)
