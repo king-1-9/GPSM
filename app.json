@@ -1,7 +1,7 @@
 {
-    "name": "Alexa Music",
-    "description": "Deploy Alexa music on railwey make sure to star the projecte.",
-    "logo": "https://telegra.ph/file/ba967503682a55beaedd3.png",
+    "name": "سورس حمد",
+    "description": "صلي على النبي وتبسم♥🌿",
+    "logo": "https://telegra.ph/file/38df0f4ee6cbd747b0332.png",
     "keywords": [
     "python3",
     "telegram",
@@ -12,59 +12,54 @@
     "pyrogram"
     ],
     "env": {
-      "API_ID": {
-        "description": "Get this value from https://my.telegram.org",
-        "value": "",
-        "required": true
-      },
-      "API_HASH": {
-        "description": "Get this value from https://my.telegram.org",
-        "value": "",
-        "required": true
-      },
       "BOT_TOKEN": {
-        "description": "A Bot's token from Botfather",
+        "description": "تـوكن الـبوب😒",
         "value": "",
         "required": true
       },
       "OWNER_ID": {
-        "description": "The user id(s) of user(s) whom you would like to add as a OWNER. Multiple values shall be seperated with a space.",
+        "description": "ايـدي الـمطور😐",
         "value": "5303133436",
         "required": true
       },        
-      "MONGO_DB_URI": {
-        "description": "Mongo DB URL",
-        "value": "",
-        "required": true
-      },
       "MUSIC_BOT_NAME": {
-        "description": "A name for your Music Bot.",
+        "description": "اسـم الـبوت🙂",
         "value": "",
         "required": true
       },
       "STRING_SESSION": {
-        "description": "A Pyrogram Session Get It From  Here @Session_Generator_Robot.",
+        "description": "جـلسة بايـروجـرام😕",
         "value": "",
         "required": true
       },
       "HEROKU_API_KEY": {
-        "description": "Your Heroku account's API key",
-        "value": "",
+        "description": "اتـركه كـما هو😠",
+        "value": "qwertyuiop",
         "required": false
       },
       "HEROKU_APP_NAME": {
-        "description": "Your heroku app name",
+        "description": "انسخ اول مربع والصقه هنا🤓",
         "value": "",
         "required": false
       },
-      "UPSTREAM_REPO": {
-        "description": "If you dont know this, Leave as it is",
-        "value": "https://github.com/TheTeamAlexa/AlexaMusic",
+      "LOG_GROUP_ID": {
+        "description": "ايـدي الگروب😑",
+        "value": "",
         "required": true
       },
-      "LOG_GROUP_ID": {
-        "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Use only Group. Please don't use Channel ID.",
+      "SUPPORT_CHANNEL": {
+        "description": "رابـط قـناتـك🙃",
         "value": "",
+        "required": true
+      },
+      "SUPPORT_GROUP": {
+        "description": "رابط الكروب🙁",
+        "value": "",
+        "required": true
+      },
+      "chaanel": {
+        "description": "قـناة الاشتراك😶",
+        "value": "ah07v",
         "required": true
       }
     },
