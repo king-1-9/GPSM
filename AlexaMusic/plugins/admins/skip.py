@@ -180,8 +180,7 @@ async def skip(cli, message: Message, _, chat_id):
             image = None
         elif videoid == "soundcloud":
             image = None
-        else:
-            try:
+        try:
             await Alexa.skip_stream(chat_id, queued, video=status)
         except Exception:
             return await message.reply_text(_["call_9"])
