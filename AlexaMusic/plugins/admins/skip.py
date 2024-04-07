@@ -119,7 +119,7 @@ async def skip(cli, message: Message, _, chat_id):
         except Exception:
             return await message.reply_text(_["call_9"])
         theme = await check_theme(chat_id)
-        button = telegram_markup(_, chat_id)
+        button = stream_markup(_, videoid, chat_id)
         img = await gen_thumb(videoid, user_id, theme)
         run = await message.reply_photo(
             photo=img,
@@ -167,7 +167,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Alexa.skip_stream(chat_id, videoid, video=status)
         except Exception:
             return await message.reply_text(_["call_9"])
-        button = telegram_markup(_, chat_id)
+        button = stream_markup(_, videoid, chat_id)
         run = await message.reply_photo(
             photo=config.STREAM_IMG_URL,
             caption=_["stream_2"].format(user),
@@ -181,7 +181,7 @@ async def skip(cli, message: Message, _, chat_id):
         except Exception:
             return await message.reply_text(_["call_9"])
         if videoid == "telegram":
-            button = telegram_markup(_, chat_id)
+            button = stream_markup(_, videoid, chat_id)
             run = await message.reply_photo(
                 photo=(
                     config.TELEGRAM_AUDIO_URL
@@ -194,7 +194,7 @@ async def skip(cli, message: Message, _, chat_id):
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
         elif videoid == "soundcloud":
-            button = telegram_markup(_, chat_id)
+            button = stream_markup(_, videoid, chat_id)
             run = await message.reply_photo(
                 photo=(
                     config.SOUNCLOUD_IMG_URL
