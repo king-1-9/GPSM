@@ -49,12 +49,12 @@
       },
       "SUPPORT_CHANNEL": {
         "description": "رابـط قـناتـك🙃",
-        "value": "",
+        "value": "https://t.me/ah07v",
         "required": true
       },
       "SUPPORT_GROUP": {
         "description": "رابط الكروب🙁",
-        "value": "",
+        "value": "https://t.me/ah07v",
         "required": true
       },
       "chaanel": {
