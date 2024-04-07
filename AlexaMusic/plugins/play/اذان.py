@@ -19,23 +19,21 @@ prayers = {
     "Isha" : "العشاء"
     }
 
-@client.on_message(filters.command("تفعيل الصلاه", ""))
-def enable_prayer(bot: Client, message: Message):
-    chat_id = message.chat.id
-    if chat_id not in users:
-        users.append(chat_id)
-        message.reply_text("تم تفعيل الصلاه 👀")
-        return
-    message.reply_text("متفعله يسطا")
+@app.on_message(filters.text & ~filters.private, group=20)
+async def handle_messages(c, msg):
+    if msg.text == "تفعيل الأذان":
+        if msg.chat.id in chat:
+            await msg.reply_text("ℹ️ الأذان مفعل بالفعل.")
+        else:
+            chat.append(msg.chat.id)
+            await msg.reply_text("✅ تم تفعيل الأذان.")
+    elif msg.text == "تعطيل الأذان":
+        if msg.chat.id in chat:
+            chat.remove(msg.chat.id)
+            await msg.reply_text("✅ تم تعطيل الأذان.")
+        else:
+            await msg.reply_text("ℹ️ الأذان معطل بالفعل.")
 
-@client.on_message(filters.command("تعطيل الصلاه", ""))
-def disable_prayer(bot: Client, message: Message):
-    chat_id = message.chat.id
-    if chat_id in users:
-        users.remove(chat_id)
-        message.reply_text("تم تعطيل الصلاه 👀")
-        return
-    message.reply_text("ماهي مش متفعله يسطا")
     
 def main():
     for prayer in prayers:
