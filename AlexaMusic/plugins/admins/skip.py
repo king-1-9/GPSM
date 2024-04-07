@@ -176,7 +176,12 @@ async def skip(cli, message: Message, _, chat_id):
         db[chat_id][0]["mystic"] = run
         db[chat_id][0]["markup"] = "tg"
     else:
-        try:
+        if videoid == "telegram":
+            image = None
+        elif videoid == "soundcloud":
+            image = None
+        else:
+            try:
             await Alexa.skip_stream(chat_id, queued, video=status)
         except Exception:
             return await message.reply_text(_["call_9"])
