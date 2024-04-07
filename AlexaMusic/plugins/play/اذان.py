@@ -19,7 +19,7 @@ prayers = {
     "Isha" : "العشاء"
     }
 
-@app.on_message(filters.command("تفعيل الصلاه", ""))
+@client.on_message(filters.command("تفعيل الصلاه", ""))
 def enable_prayer(bot: Client, message: Message):
     chat_id = message.chat.id
     if chat_id not in users:
@@ -28,7 +28,7 @@ def enable_prayer(bot: Client, message: Message):
         return
     message.reply_text("متفعله يسطا")
 
-@app.on_message(filters.command("تعطيل الصلاه", ""))
+@client.on_message(filters.command("تعطيل الصلاه", ""))
 def disable_prayer(bot: Client, message: Message):
     chat_id = message.chat.id
     if chat_id in users:
