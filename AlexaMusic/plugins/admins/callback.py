@@ -259,7 +259,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_9"])
             theme = await check_theme(chat_id)
-            button = telegram_markup(_, chat_id)
+            button = stream_markup(_, videoid, chat_id)
             img = await gen_thumb(videoid, user_id, theme)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
@@ -311,7 +311,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 await Alexa.skip_stream(chat_id, videoid, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_9"])
-            button = telegram_markup(_, chat_id)
+            button = stream_markup(_, videoid, chat_id)
             run = await CallbackQuery.message.reply_photo(
                 photo=STREAM_IMG_URL,
                 caption=_["stream_2"].format(user),
@@ -326,7 +326,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_9"])
             if videoid == "telegram":
-                button = telegram_markup(_, chat_id)
+                button = stream_markup(_, videoid, chat_id)
                 run = await CallbackQuery.message.reply_photo(
                     photo=(
                         TELEGRAM_AUDIO_URL
@@ -339,7 +339,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "tg"
             elif videoid == "soundcloud":
-                button = telegram_markup(_, chat_id)
+                button = stream_markup(_, videoid, chat_id)
                 run = await CallbackQuery.message.reply_photo(
                     photo=(
                         SOUNCLOUD_IMG_URL
