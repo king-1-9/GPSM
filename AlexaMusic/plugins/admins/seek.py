@@ -24,7 +24,9 @@ from AlexaMusic.utils import AdminRightsCheck, seconds_to_min
 SEEK_COMMAND = get_command("SEEK_COMMAND")
 
 
-@app.on_message(filters.command(SEEK_COMMAND) & filters.group & ~BANNED_USERS)
+@app.on_message(
+ filters.command(SEEK_COMMAND,"")
+    & ~BANNED_USERS)
 @AdminRightsCheck
 async def seek_comm(cli, message: Message, _, chat_id):
     if len(message.command) == 1:
@@ -71,6 +73,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
         )
     except:
         return await mystic.edit_text(_["admin_34"])
+    user_mention = message.from_user.mention if message.from_user else "المشـرف"
     if message.command[0][-2] == "c":
         db[chat_id][0]["played"] -= duration_to_skip
     else:
