@@ -22,7 +22,7 @@ from AlexaMusic.utils.decorators import AdminRightsCheck
 STOP_COMMAND = get_command("STOP_COMMAND")
 
 
-app@app.on_message(
+@app.on_message(
  filters.command(STOP_COMMAND,"")
     & ~BANNED_USERS)
 @AdminRightsCheck
