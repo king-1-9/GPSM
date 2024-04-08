@@ -30,13 +30,16 @@ from AlexaMusic.utils.theme import check_theme
 SKIP_COMMAND = get_command("SKIP_COMMAND")
 
 
-@app.on_message(filters.command(SKIP_COMMAND) & filters.group & ~BANNED_USERS)
+@app.on_message(
+ filters.command(SKIP_COMMAND,"")
+    & ~BANNED_USERS)
 @AdminRightsCheck
 async def skip(cli, message: Message, _, chat_id):
     if not len(message.command) < 2:
         loop = await get_loop(chat_id)
         if loop != 0:
             return await message.reply_text(_["admin_12"])
+        user_mention = message.from_user.mention if message.from_user else "المشـرف"
         state = message.text.split(None, 1)[1].strip()
         if state.isnumeric():
             state = int(state)
@@ -105,7 +108,7 @@ async def skip(cli, message: Message, _, chat_id):
     title = (check[0]["title"]).title()
     user = check[0]["by"]
     theme = await check_theme(chat_id)
-    user_id = message.from_user.id
+    user = check[0]["by"] if check[0] else "المشـرف"
     streamtype = check[0]["streamtype"]
     videoid = check[0]["vidid"]
     duration_min = check[0]["dur"]
