@@ -61,24 +61,22 @@ class Userbot(Client):
         )
 
     async def start(self):
-        LOGGER(__name__).info(f"Starting Assistant Clients...")
+        LOGGER(__name__).info(f"تـم تـشغيل الـحساب الـمساعد {self.one.name} بـنجاح. ")
         if config.STRING1:
             await self.one.start()
             try:
-                await self.one.join_chat("Alexa_Help")
-                await self.one.join_chat("TheTeamAlexa")
-                await self.one.join_chat("Alexa_BotUpdates")
+                await self.one.join_chat("ah07v")
             except:
                 pass
             assistants.append(1)
             try:
                 await self.one.send_message(
                     config.LOG_GROUP_ID,
-                    "ᴀssɪsᴛᴀɴᴛ sᴛᴀʀᴛᴇᴅ, ɴᴏᴡ ɪᴛ's ᴛɪᴍᴇ ᴛᴏ ᴇɴᴊᴏʏ ᴍᴜsɪᴄ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏᴄʜᴀᴛs.",
+                    "**🥤| تـم تـشغيل الـحساب الـمساعد بـنجاح.**",
                 )
             except:
                 LOGGER(__name__).error(
-                    f"Assistant Account 1 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
+                    f"تـأكد من اضـافة الـحساب المساعد الى الـمجموعه وفـتح مـكالمه صـوتيه "
                 )
                 sys.exit()
             get_me = await self.one.get_me()
@@ -89,24 +87,22 @@ class Userbot(Client):
                 self.one.name = get_me.first_name + " " + get_me.last_name
             else:
                 self.one.name = get_me.first_name
-            LOGGER(__name__).info(f"Assistant Started as {self.one.name}")
+            LOGGER(__name__).info(f"تـم تـشغيل الـحساب الـمساعد {self.two.name} بـنجاح. ")
         if config.STRING2:
             await self.two.start()
             try:
-                await self.two.join_chat("Alexa_Help")
-                await self.two.join_chat("TheTeamAlexa")
-                await self.two.join_chat("Alexa_BotUpdates")
+                await self.two.join_chat("ah07v")
             except:
                 pass
             assistants.append(2)
             try:
                 await self.two.send_message(
                     config.LOG_GROUP_ID,
-                    "ᴀssɪsᴛᴀɴᴛ sᴛᴀʀᴛᴇᴅ, ɴᴏᴡ ɪᴛ's ᴛɪᴍᴇ ᴛᴏ ᴇɴᴊᴏʏ ᴍᴜsɪᴄ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏᴄʜᴀᴛs.",
+                    "**🥤| تـم تـشغيل الـحساب الـمساعد بـنجاح.**",
                 )
             except:
                 LOGGER(__name__).error(
-                    f"Assistant Account 2 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
+                    f"تـأكد من اضـافة الـحساب المساعد الى الـمجموعه وفـتح مـكالمه صـوتيه "
                 )
                 sys.exit()
             get_me = await self.two.get_me()
@@ -117,24 +113,22 @@ class Userbot(Client):
                 self.two.name = get_me.first_name + " " + get_me.last_name
             else:
                 self.two.name = get_me.first_name
-            LOGGER(__name__).info(f"Assistant Two Started as {self.two.name}")
+            LOGGER(__name__).info(f"تـم تـشغيل الـحساب الـمساعد {self.three.name} بـنجاح. ")
         if config.STRING3:
             await self.three.start()
             try:
-                await self.three.join_chat("Alexa_Help")
-                await self.three.join_chat("TheTeamAlexa")
-                await self.three.join_chat("Alexa_BotUpdates")
+                await self.three.join_chat("ah07v")
             except:
                 pass
             assistants.append(3)
             try:
                 await self.three.send_message(
                     config.LOG_GROUP_ID,
-                    "ᴀssɪsᴛᴀɴᴛ sᴛᴀʀᴛᴇᴅ, ɴᴏᴡ ɪᴛ's ᴛɪᴍᴇ ᴛᴏ ᴇɴᴊᴏʏ ᴍᴜsɪᴄ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏᴄʜᴀᴛs.",
+                    "**🥤| تـم تـشغيل الـحساب الـمساعد بـنجاح.**",
                 )
             except:
                 LOGGER(__name__).error(
-                    f"Assistant Account 3 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
+                    f"تـأكد من اضـافة الـحساب المساعد الى الـمجموعه وفـتح مـكالمه صـوتيه "
                 )
                 sys.exit()
             get_me = await self.three.get_me()
@@ -145,24 +139,22 @@ class Userbot(Client):
                 self.three.name = get_me.first_name + " " + get_me.last_name
             else:
                 self.three.name = get_me.first_name
-            LOGGER(__name__).info(f"Assistant Three Started as {self.three.name}")
+            LOGGER(__name__).info(f"تـم تـشغيل الـحساب الـمساعد {self.four.name} بـنجاح. ")
         if config.STRING4:
             await self.four.start()
             try:
-                await self.four.join_chat("Alexa_Help")
-                await self.four.join_chat("TheTeamAlexa")
-                await self.four.join_chat("Alexa_BotUpdates")
+                await self.four.join_chat("ah07v")
             except:
                 pass
             assistants.append(4)
             try:
                 await self.four.send_message(
                     config.LOG_GROUP_ID,
-                    "ᴀssɪsᴛᴀɴᴛ sᴛᴀʀᴛᴇᴅ, ɴᴏᴡ ɪᴛ's ᴛɪᴍᴇ ᴛᴏ ᴇɴᴊᴏʏ ᴍᴜsɪᴄ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏᴄʜᴀᴛs.",
+                    "**🥤| تـم تـشغيل الـحساب الـمساعد بـنجاح.**",
                 )
             except:
                 LOGGER(__name__).error(
-                    f"Assistant Account 4 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
+                    f"تـأكد من اضـافة الـحساب المساعد الى الـمجموعه وفـتح مـكالمه صـوتيه "
                 )
                 sys.exit()
             get_me = await self.four.get_me()
@@ -173,24 +165,22 @@ class Userbot(Client):
                 self.four.name = get_me.first_name + " " + get_me.last_name
             else:
                 self.four.name = get_me.first_name
-            LOGGER(__name__).info(f"Assistant Four Started as {self.four.name}")
+            LOGGER(__name__).info(f"تـم تـشغيل الـحساب الـمساعد {self.five.name} بـنجاح. ")
         if config.STRING5:
             await self.five.start()
             try:
-                await self.five.join_chat("Alexa_Help")
-                await self.five.join_chat("TheTeamAlexa")
-                await self.five.join_chat("Alexa_BotUpdates")
+                await self.five.join_chat("ah07v")
             except:
                 pass
             assistants.append(5)
             try:
                 await self.five.send_message(
                     config.LOG_GROUP_ID,
-                    "ᴀssɪsᴛᴀɴᴛ sᴛᴀʀᴛᴇᴅ, ɴᴏᴡ ɪᴛ's ᴛɪᴍᴇ ᴛᴏ ᴇɴᴊᴏʏ ᴍᴜsɪᴄ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏᴄʜᴀᴛs.",
+                    "**🥤| تـم تـشغيل الـحساب الـمساعد بـنجاح.**",
                 )
             except:
                 LOGGER(__name__).error(
-                    f"Assistant Account 5 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
+                    f"تـأكد من اضـافة الـحساب المساعد الى الـمجموعه وفـتح مـكالمه صـوتيه "
                 )
                 sys.exit()
             get_me = await self.five.get_me()
