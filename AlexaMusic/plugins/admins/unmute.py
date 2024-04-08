@@ -24,7 +24,7 @@ from AlexaMusic.utils.decorators import AdminRightsCheck
 UNMUTE_COMMAND = get_command("UNMUTE_COMMAND")
 
 
-app@app.on_message(
+@app.on_message(
  filters.command(UNMUTE_COMMAND,"")
     & ~BANNED_USERS)
 @AdminRightsCheck
