@@ -27,7 +27,7 @@ class AlexaBot(Client):
             bot_token=config.BOT_TOKEN,
             in_memory=True,
         )
-        LOGGER(__name__).info(f"Starting Bot...")
+        LOGGER(__name__).info(f"**🥤| تـم تـشغيل الـبوت بـنجاح...**")
 
     async def start(self):
         await super().start()
@@ -37,19 +37,19 @@ class AlexaBot(Client):
         self.mention = get_me.mention
         try:
             await self.send_message(
-                config.LOG_GROUP_ID, "» ᴍᴜsɪᴄ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ, ᴡᴀɪᴛɪɴɢ ғᴏʀ ᴀssɪsᴛᴀɴᴛ..."
+                config.LOG_GROUP_ID, "**🥤| تـم تـشغيل الـبوت بـنجاح، في انـتظار الـساب الـمساعد...**"
             )
         except:
             LOGGER(__name__).error(
-                "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
+                "**🥤| قـم بـرفع الـبوت مشرف.**"
             )
             sys.exit()
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != ChatMemberStatus.ADMINISTRATOR:
-            LOGGER(__name__).error("Please promote Bot as Admin in Logger Group")
+            LOGGER(__name__).error("**🥤| مـن فـضلك قـم بـرفع الـبوت مشرف.**")
             sys.exit()
         if get_me.last_name:
             self.name = get_me.first_name + " " + get_me.last_name
         else:
             self.name = get_me.first_name
-        LOGGER(__name__).info(f"MusicBot Started as {self.name}")
+        LOGGER(__name__).info(f"**🥤| تـم تـشغيل بـوت {self.name} بـنجاح.**")
