@@ -24,7 +24,9 @@ from AlexaMusic.utils.decorators import AdminRightsCheck
 UNMUTE_COMMAND = get_command("UNMUTE_COMMAND")
 
 
-@app.on_message(filters.command(UNMUTE_COMMAND) & filters.group & ~BANNED_USERS)
+app@app.on_message(
+ filters.command(UNMUTE_COMMAND,"")
+    & ~BANNED_USERS)
 @AdminRightsCheck
 async def unmute_admin(Client, message: Message, _, chat_id):
     if not len(message.command) == 1 or message.reply_to_message:
@@ -32,6 +34,7 @@ async def unmute_admin(Client, message: Message, _, chat_id):
     if not await is_muted(chat_id):
         return await message.reply_text(_["admin_7"], disable_web_page_preview=True)
     await mute_off(chat_id)
+    user_mention = message.from_user.mention if message.from_user else "المشـرف"
     await Alexa.unmute_stream(chat_id)
     await message.reply_text(
         _["admin_8"].format(message.from_user.mention), disable_web_page_preview=True
