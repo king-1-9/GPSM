@@ -216,7 +216,6 @@ async def skip(cli, message: Message, _, chat_id):
         else:
             theme = await check_theme(chat_id)
             button = stream_markup(_, videoid, chat_id)
-            img = await gen_thumb(videoid, user_id, theme)
             run = await message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
