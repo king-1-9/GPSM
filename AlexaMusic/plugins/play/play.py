@@ -38,25 +38,6 @@ from config import BANNED_USERS, lyrical
 from strings import get_command
 from AlexaMusic.utils.database import is_served_user
 
-force_btn = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(
-                text=" ڵـۦ ضـۦـيـﭑﭑ؏...🖤★", url="https://t.me/ah07v"
-            ),                        
-        ],        
-    ]
-)
-
-async def check_is_joined(message):    
-    try:
-        userid = message.from_user.id
-        status = await app.get_chat_member("ah07v", userid)
-        return True
-    except Exception:
-        await message.reply_text("◇︰ عذراً، عليك الانضمام الى هذهِ القناة أولاً  \n◇︰ اشترك ثم أرسل : شغل + اسم الاغنيه",reply_markup=force_btn)
-        return False
-
 
 
 # Command
@@ -90,8 +71,8 @@ async def play_commnd(
     slider = None
     plist_type = None
     spotify = None
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
+    user_id = message.from_user.id if message.from_user else "1748768168"
+    user_name = message.from_user.first_name if message.from_user else "None"
     audio_telegram = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
