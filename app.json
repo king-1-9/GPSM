@@ -12,6 +12,16 @@
     "pyrogram"
     ],
     "env": {
+      "API_ID": {
+        "description": "اتركه كما هو.",
+        "value": "20036317",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "اتركه كما هو.",
+        "value": "986cb4ba434870a62fe96da3b5f6d411",
+        "required": true
+      },
       "BOT_TOKEN": {
         "description": "تـوكن الـبوب😒",
         "value": "",
