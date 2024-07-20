@@ -1,11 +1,19 @@
 {
-    "name": "سورس حمد",
+    "name": "سورس عبود",
     "description": "صلي على النبي وتبسم♥🌿",
     "addons": ["scalingo-postgresql"],
     "keywords": ["python3","telegram","bot","Alexa","alexamusic","alexamusicbot","pyrogram"],
     "repository": "https://github.com/king-1-9/GPSM",
     "logo": "https://telegra.ph/file/38df0f4ee6cbd747b0332.png",
     "stack": "container",
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview.git"
+          }
+      ],
     "env": {
       "API_ID": {
         "description": "اتركه كما هو.",
@@ -67,13 +75,6 @@
         "required": true,
         "value": "ah07v"
       }
-    },
-    "buildpacks": [
-          {
-              "url": "heroku/python"
-          },
-          {
-              "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview.git"
-          }
-      ],
+    }
+    
   }
