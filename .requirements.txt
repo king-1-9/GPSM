@@ -1,4 +1,0 @@
-pyrogram
-requests
-asyncio
-redis
