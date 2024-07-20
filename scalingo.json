@@ -1,41 +1,79 @@
 {
-    "name": "𝗭𝗧𝗵𝗼𝗻",
-    "description": "• تنصيب سـورس زدثــون مجاناً علـى منصـة سكـالينجـو • افضـل سـورسـات يـوزربـوت العربيـة",
+    "name": "سورس عبود",
+    "description": "صلي على النبي وتبسم♥🌿",
     "addons": ["scalingo-postgresql"],
-    "keywords": ["zthon", "ai","telegram"],
-    "repository": "https://github.com/ZThon-fr/bita",
-    "logo": "https://graph.org/file/dc08630c4dc62f59d263b.jpg",
+    "keywords": ["python3","telegram","bot","Alexa","alexamusic","alexamusicbot","pyrogram"],
+    "repository": "https://github.com/king-1-9/GPSM",
+    "logo": "https://telegra.ph/file/38df0f4ee6cbd747b0332.png",
     "stack": "container",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview.git"
+        }
+    ],
     "env": {
-        "STRING_SESSION": {
-            "description": "كـــود جلســة تيــرمكــس - الكـود الكبيـر مـن حـافظـة حسـابـك او مـن بــوت〔 T66bot@ 〕..",
-            "required": true
-        },
-        "TG_BOT_TOKEN": {
-            "description": "تـــوكـــن البـــوت المســاعـد الخــاص بـك - مـن بـوت فـاذر〔 Botfather@ 〕..",
+        "API_ID": {
+            "description": "اتركه كما هو.",
             "required": true,
-            "value":""
-        },
-        "APP_ID": {
-            "description": "كـود ايبي ايـدي〔 App id 〕اتركـه كمـا هــو",
-            "required": true,
-            "value":"27455984"
+            "value": "20036317"
         },
         "API_HASH": {
-            "description": "كـود ايبي هـاش〔 Api Hash 〕اتركـه كمـا هــو",
+            "description": "اتركه كما هو.",
             "required": true,
-            "value":"62d5f68ce2e9189636967120220f5755"
+            "value": "986cb4ba434870a62fe96da3b5f6d411"
         },
-        "TZ": {
-            "description": "المنطقـــه الزمنيـــه لا تغيــرهـــا",
+        "BOT_TOKEN": {
+            "description": "تـوكن الـبوب😒",
             "required": true,
-            "value": "Asia/Baghdad"
+            "value": ""
         },
-        "ENV": {
-            "description": "لا تغيــرهـــا",
+        "OWNER_ID": {
+            "description": "ايـدي الـمطور😐",
             "required": true,
-            "value": "ANYTHING"
+            "value": "5145609515"
+        },
+        "MUSIC_BOT_NAME": {
+            "description": "اسـم الـبوت🙂",
+            "required": true,
+            "value": "رونا"
+        },
+        "STRING_SESSION": {
+            "description": "جـلسة بايـروجـرام😕",
+            "required": true,
+            "value": ""
+        },
+        "HEROKU_API_KEY": {
+            "description": "اتـركه كـما هو😠",
+            "required": true,
+            "value": ""
+        },
+        "HEROKU_APP_NAME": {
+            "description": "انسخ اول مربع والصقه هنا🤓",
+            "required": true,
+            "value": ""
+        },
+        "LOG_GROUP_ID": {
+            "description": "ايـدي الگروب😑",
+            "required": true,
+            "value": "-1001804181293"
+        },
+        "SUPPORT_CHANNEL": {
+            "description": "رابـط قـناتـك🙃",
+            "required": true,
+            "value": "https://t.me/ah07v"
+        },
+        "SUPPORT_GROUP": {
+            "description": "رابط الكروب🙁",
+            "required": true,
+            "value": "https://t.me/ah07v"
+        },
+        "chaanel": {
+            "description": "قـناة الاشتراك😶",
+            "required": true,
+            "value": "ah07v"
         }
-
     }
-  }
+}
