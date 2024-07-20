@@ -6,14 +6,6 @@
     "repository": "https://github.com/king-1-9/GPSM",
     "logo": "https://telegra.ph/file/38df0f4ee6cbd747b0332.png",
     "stack": "container",
-    "buildpacks": [
-          {
-              "url": "heroku/python"
-          },
-          {
-              "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview.git"
-          }
-      ],
     "env": {
       "API_ID": {
         "description": "اتركه كما هو.",
